@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 public class TuneBook
 {
 	ArrayList<Tune> tunes = new ArrayList<Tune>();
+
 	public TuneBook(String fileName)
 	{
 		loadTunes(fileName);
@@ -14,7 +15,6 @@ public class TuneBook
 
 	public void loadTunes(String fileName)
 	{
-
         // Adapted from: https://docs.oracle.com/javase/tutorial/essential/io/charstreams.html
         BufferedReader inputStream = null;
 
@@ -26,7 +26,21 @@ public class TuneBook
             String l;
             while ((l = inputStream.readLine()) != null) 
             {
-                tunes.add(l);
+            	String ret = "";
+                //tunes.add(l);
+                //System.out.println(l);
+                if (l.charAt(0) == 'X') 
+                {
+                	ret += l.charAt(1);
+                }
+                else if(l.charAt(0) == 'T')
+                {
+                	ret += l.charAt(1);
+                }
+                System.out.println(ret);
+
+       //          Tune t = new Tune(l);
+    			// tunes.add(t);
             }
         }
         catch (IOException e)
@@ -52,7 +66,10 @@ public class TuneBook
 	{
 		//Create the buffer which will hold the words
 		StringBuffer sb = new StringBuffer();
-		for (String tune:tunes) 
+		//Turned into string as error other wise
+		// String[] wordArr = new String[tunes.size()];
+		// wordArr = tunes.toArray(wordArr);
+		for (Tune tune:tunes) 
 		{
 			sb.append(tune + ", ");
 		}
@@ -62,7 +79,7 @@ public class TuneBook
 	public static void main(String[] args)
     {
         TuneBook tb = new TuneBook("ie/dit/words.txt");
-        System.out.println(tb);
+        //System.out.println(tb);
 
         // Tune t = tb.findTune("Scotsman over the Border");
         // t.play();
