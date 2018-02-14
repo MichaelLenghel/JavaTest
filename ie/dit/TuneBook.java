@@ -4,7 +4,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 
-public class TuneBook
+public class TuneBook 
 {
 	ArrayList<Tune> tunes = new ArrayList<Tune>();
 
@@ -24,23 +24,36 @@ public class TuneBook
             inputStream = new BufferedReader(new FileReader("ie/dit/tunes.txt"));
             
             String l;
+            char index1;
+            char index2;
+            String title;
+            String altTitle;
             while ((l = inputStream.readLine()) != null) 
             {
-            	String ret = "";
-                //tunes.add(l);
-                //System.out.println(l);
-                if (l.charAt(0) == 'X') 
-                {
-                	ret += l.charAt(1);
-                }
-                else if(l.charAt(0) == 'T')
-                {
-                	ret += l.charAt(1);
-                }
-                System.out.println(ret);
+            	if (l.indexOf("X") == 0) 
+            	{
+            		if(l.length() > 3)
+            		{
+            			index1 = l.charAt(2);
+            			index2 = l.charAt(3);	
+            			System.out.println(index1 + index2);
+            		}
+            		else
+            		{
+            			index1 = l.charAt(2);
+            		}
+            	}
 
-       //          Tune t = new Tune(l);
-    			// tunes.add(t);
+            	else if(l.indexOf("T") == 0)
+            	{
+            		title = l.substring(2, l.length());
+            		System.out.println(title + "\n ");
+            	}
+
+            	//Array out of bounds index - Could not fix (spent an hour trying to)
+            		//System.out.println(l);
+        //     		Tune t = new Tune(l);
+    				// tunes.add(t);
             }
         }
         catch (IOException e)
@@ -71,7 +84,7 @@ public class TuneBook
 		// wordArr = tunes.toArray(wordArr);
 		for (Tune tune:tunes) 
 		{
-			sb.append(tune + ", ");
+			sb.append(tune + "\n ");
 		}
 		return sb.toString();
 	}

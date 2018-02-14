@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 
-public class Tune implements play
+public class Tune
 {
 	private int x;
     private String title;
@@ -14,20 +14,26 @@ public class Tune implements play
 
     public Tune(String line)
     {
-    	if (line.charAt(1) == 'X')
+    	if (line.charAt(0) == 'X')
     	{
-    		this.x = line.charAt(1);
+    		this.x = 1;
     	}
-    	else if(line.charAt(2) == 'T')
+    	else if(line.charAt(0) == 'T')
     	{
     		this.title = "2";
     	}
     }
 
-    public void play()
-    {
-    	
-    }
+    // public void play()
+    // {
+
+    // }
+
+    // public String findTune(String file)
+    // {
+    // 	String ret = "";
+    // 	return ret;
+    // }
     //Accessor
     public int getX()
     {
